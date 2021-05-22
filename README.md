@@ -47,7 +47,7 @@ Send the JSON (default) payload to a webhook:
 
 ```yml
     - name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v1
+      uses: johannes-huther/workflow-webhook@custom-features
       env:
         webhook_url: ${{ secrets.WEBHOOK_URL }}
         webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
@@ -71,7 +71,7 @@ Add additional data to the payload:
 
 ```yml
     - name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v1
+      uses: johannes-huther/workflow-webhook@custom-features
       env:
         webhook_url: ${{ secrets.WEBHOOK_URL }}
         webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
@@ -100,7 +100,7 @@ Send a form-urlencoded payload instead:
 
 ```yml
     - name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v1
+      uses: johannes-huther/workflow-webhook@custom-features
       env:
         webhook_type: 'form-urlencoded'
         webhook_url: ${{ secrets.WEBHOOK_URL }}
@@ -120,7 +120,7 @@ to the default JSON snippet above), then configure the webhook with a `webhook_t
 
 ```yml
     - name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v1
+      uses: johannes-huther/workflow-webhook@custom-features
       env:
         webhook_type: 'json-extended'
         webhook_url: ${{ secrets.WEBHOOK_URL }}
