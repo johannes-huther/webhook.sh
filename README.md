@@ -63,7 +63,7 @@ Will deliver a payload with the following properties:
     "ref": "refs/heads/master",
     "head": "",
     "workflow": "Build and deploy",
-    "requestID": "74b1912d19cfe780f1fada4b525777fd"
+    "requestID": "74b1912d-19cf-e780-f1fa-da4b525777fd"
 }
 ```
 `requestID` contains a randomly generated identifier for each request. 
@@ -96,7 +96,7 @@ and now look like:
         "weapon": "hammer",
         "drink": "beer"
     },
-    "requestID": "74b1912d19cfe780f1fada4b525777fd"
+    "requestID": "74b1912d-19cf-e780-f1fa-da4b525777fd"
 }
 ```
 
