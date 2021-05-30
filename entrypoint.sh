@@ -29,16 +29,6 @@ if [ -z "$webhook_secret" ]; then
     exit 1
 fi
 
-#
-# This method does not require additional package installation (of util-linux) 
-# on docker image, resulting in a slightly smaller image file
-#
-# REQUEST_ID=$(cat /dev/urandom | tr -dc '0-9a-f' | fold -w 32 | head -n 1)
-
-#
-# This method is cleaner, but requires util-linux to be installed on Alpine image,
-# resuling in a slightly larger image file
-# 
 REQUEST_ID=$(uuidgen)
 
 if [ -n "$webhook_type" ] && [ "$webhook_type" == "form-urlencoded" ]; then
