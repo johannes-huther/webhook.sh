@@ -1,10 +1,27 @@
-# Workflow Webhook Action
+# webhook.sh
 
 [![GitHub Release][ico-release]][link-github-release]
 [![License][ico-license]](LICENSE)
 
-A Github workflow action to call a remote webhook endpoint with a JSON or form-urlencoded
-payload, and support for BASIC authentication. A hash signature is passed with each request, 
+A Github workflow action to call a remote webhook with a JSON or form-urlencoded
+payload. 
+
+This action runs `using: 'composite'` (i.e. directly on the runner) and will therefore only run in certain linux/ ubuntu environments. 
+
+## Cross-platform alternative
+This is a composite-type-action fork of the docker based cross-platform compatible project [distributhor/workflow-webhook](https://github.com/distributhor/workflow-webhook), which runs in a docker container. If you need to run on anything different than `ubuntu` check out [distributhor's](https://github.com/distributhor) project.
+
+If you are switching between these projects, you can refer to this version matrix:
+
+| This Project ([johannes-huther/webhook.sh](https://github.com/johannes-huther/webhook.sh))  | [distributhor/workflow-webhook](https://github.com/distributhor/workflow-webhook) | Breaking changes |
+| ------------- | ------------- | --- |
+| n.a. | `v1.x` | |
+| `v1.x`  | `v2.x` | Major security improvements with new default values. |
+
+_Reading example: If you were previously using `v1` of this project and want to switch to [distributhor/workflow-webhook](https://github.com/distributhor/workflow-webhook) use `v2` of that project._
+
+## Details
+A hash signature is passed with each request, 
 derived from the payload and a configurable secret token. The hash signature is 
 identical to that which a regular Github webhook would generate, and sent in a header 
 field named `X-Hub-Signature`. Therefore any existing Github webhook signature 
@@ -47,7 +64,7 @@ Send the JSON (default) payload to a webhook:
 
 ```yml
     - name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v2
+      uses: johannes-huther/webhook.sh@v1
       env:
         webhook_url: ${{ secrets.WEBHOOK_URL }}
         webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
@@ -74,7 +91,7 @@ Add additional data to the payload:
 
 ```yml
     - name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v2
+      uses: johannes-huther/webhook.sh@v1
       env:
         webhook_url: ${{ secrets.WEBHOOK_URL }}
         webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
@@ -104,7 +121,7 @@ Send a form-urlencoded payload instead:
 
 ```yml
     - name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v2
+      uses: johannes-huther/webhook.sh@v1
       env:
         webhook_type: 'form-urlencoded'
         webhook_url: ${{ secrets.WEBHOOK_URL }}
@@ -124,7 +141,7 @@ to the default JSON snippet above), then configure the webhook with a `webhook_t
 
 ```yml
     - name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v2
+      uses: johannes-huther/webhook.sh@v1
       env:
         webhook_type: 'json-extended'
         webhook_url: ${{ secrets.WEBHOOK_URL }}
@@ -209,6 +226,6 @@ The supplied JSON must pass the validation run through `jq`.
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
-[ico-release]: https://img.shields.io/github/tag/distributhor/workflow-webhook.svg
+[ico-release]: https://img.shields.io/github/tag/johannes-huther/webhook.sh.svg
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg
-[link-github-release]: https://github.com/distributhor/workflow-webhook/releases
+[link-github-release]: https://github.com/johannes-huther/webhook.sh/releases
